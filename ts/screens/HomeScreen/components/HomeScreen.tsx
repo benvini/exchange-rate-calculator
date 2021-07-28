@@ -10,6 +10,7 @@ import {COIN_SYMBOLS, FLAGS} from '../../../constants/contants';
 import {styles} from '../styles/styles';
 import {Screen, Typography} from '../../../shared/components';
 import Spinner from '../../../shared/components/Spinner';
+import {Platform} from 'react-native';
 
 const ScreenContainer = styled(Screen)`
   align-items: center;
@@ -171,11 +172,17 @@ const HomeScreen = () => {
       <Label>{t('amount')}</Label>
       <Input onChangeText={onInputChange} value={inputText} />
       {errorMessage && <StyledErrorText>{t('invalidAmount')}</StyledErrorText>}
+      <Button onPress={onConvertClicked} disabled={errorMessage || destValue === originValue}>
+        <Typography>{t('convert')}</Typography>
+      </Button>
       <Label>{t('from')}</Label>
-      <DropDownContainer style={{...(isOriginOpen && {zIndex: 10})}}>
+      <DropDownContainer style={{...(isOriginOpen && Platform.OS === 'ios' && {zIndex: 10})}}>
         <DropDownPicker
           containerProps={{style: {...styles.dropDown}}}
           searchable={true}
+          zIndexInverse={7000}
+          listMode="SCROLLVIEW"
+          zIndex={1000}
           open={isOriginOpen}
           value={originValue}
           items={items}
@@ -190,10 +197,13 @@ const HomeScreen = () => {
         </ReverseContainer>
       </TouchableOpacity>
       <Label>{t('to')}</Label>
-      <DropDownContainer style={{...(isDestOpen && {zIndex: 10})}}>
+      <DropDownContainer style={{...(isDestOpen && Platform.OS === 'ios' && {zIndex: 10})}}>
         <DropDownPicker
           containerProps={{style: {...styles.dropDown}}}
           searchable={true}
+          zIndexInverse={7000}
+          zIndex={10}
+          listMode="SCROLLVIEW"
           open={isDestOpen}
           value={destValue}
           items={items}
@@ -202,9 +212,6 @@ const HomeScreen = () => {
           setItems={setItems}
         />
       </DropDownContainer>
-      <Button onPress={onConvertClicked} disabled={errorMessage || destValue === originValue}>
-        <Typography>{t('convert')}</Typography>
-      </Button>
       {isLoading && <Spinner />}
       {convertedValue && !isLoading && <Typography>{getConvertionMessage()}</Typography>}
     </ScreenContainer>
