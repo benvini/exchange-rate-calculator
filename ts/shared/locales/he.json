@@ -1,0 +1,10 @@
+{
+  "homeScreen": {
+    "amount": "כמות",
+    "from": "מקור",
+    "to": "יעד",
+    "convert": "המר",
+    "invalidAmount": "כמות שגויה",
+    "unableConvertCurrency": "לא ניתן לבצע המרה."
+  }
+}
