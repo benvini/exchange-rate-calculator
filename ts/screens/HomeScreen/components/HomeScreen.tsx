@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useTranslation} from 'react-i18next';
 
-import {getSymbolByKey, getRateByKey, isNumber, getDeclarativeNameByKey, getDestRateByKey} from '../../../shared/utils/utils';
+import {getSymbolByKey, convertBaseCurrencyToEur, isNumber, getDeclarativeNameByKey, getDestRateByKey} from '../../../shared/utils/utils';
 import {getExchangeRate} from '../../../shared/utils/api';
 import {COIN_SYMBOLS, FLAGS} from '../../../constants/contants';
 import {styles} from '../styles/styles';
@@ -93,14 +93,6 @@ const HomeScreen = () => {
   ]);
   const {t} = useTranslation('homeScreen');
 
-  const convertBaseCurrencyToEur = useCallback((originVal, amount, rates) => {
-    if (originVal === 'eur') {
-      return amount;
-    }
-    const originRateEuroBased = getRateByKey(originVal, rates);
-    return originRateEuroBased ? amount / originRateEuroBased : null;
-  }, []);
-
   const onConvertClicked = useCallback(async () => {
     try {
       const amount = Number(inputText.slice(2));
@@ -116,7 +108,7 @@ const HomeScreen = () => {
     } catch (e) {
       setError(true);
     }
-  }, [originValue, destValue, inputText, convertBaseCurrencyToEur]);
+  }, [originValue, destValue, inputText]);
 
   const onInputChange = useCallback(
     (text: string) => {

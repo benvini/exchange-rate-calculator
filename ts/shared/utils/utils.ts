@@ -117,3 +117,11 @@ export const getDestRateByKey = (key: string, rates: Rates) => {
   const destRate = getRateByKey(key, rates);
   return destRate;
 };
+
+export const convertBaseCurrencyToEur = (originVal: string, amount: number, rates: Rates) => {
+  if (originVal === 'eur') {
+    return amount;
+  }
+  const originRateEuroBased = getRateByKey(originVal, rates);
+  return originRateEuroBased ? amount / originRateEuroBased : null;
+};
