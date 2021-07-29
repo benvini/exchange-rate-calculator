@@ -1,5 +1,7 @@
+import i18next from 'i18next';
+
 import {Rates} from '../../types/types';
-import {COIN_SYMBOLS, DECLARATIVE_CURRENCY_NAMES} from '../../constants/contants';
+import {COIN_SYMBOLS, DECLARATIVE_CURRENCY_NAMES, DECLARATIVE_CURRENCY_NAMES_HE} from '../../constants/contants';
 
 export const getSymbolByKey = (key: string) => {
   let fetchedSymbol = '';
@@ -80,30 +82,31 @@ export const isNumber = (str: string) => {
 
 export const getDeclarativeNameByKey = (key: string) => {
   let declarativeName;
+  const declarativeNameObject = i18next.language === 'en' ? DECLARATIVE_CURRENCY_NAMES : DECLARATIVE_CURRENCY_NAMES_HE;
   switch (key) {
     case 'ils':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.ils;
+      declarativeName = declarativeNameObject.ils;
       break;
     case 'ars':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.ars;
+      declarativeName = declarativeNameObject.ars;
       break;
     case 'inr':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.inr;
+      declarativeName = declarativeNameObject.inr;
       break;
     case 'aud':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.aud;
+      declarativeName = declarativeNameObject.aud;
       break;
     case 'usd':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.usd;
+      declarativeName = declarativeNameObject.usd;
       break;
     case 'thb':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.thb;
+      declarativeName = declarativeNameObject.thb;
       break;
     case 'gbp':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.gbp;
+      declarativeName = declarativeNameObject.gbp;
       break;
     case 'eur':
-      declarativeName = DECLARATIVE_CURRENCY_NAMES.eur;
+      declarativeName = declarativeNameObject.eur;
       break;
   }
 
@@ -124,4 +127,14 @@ export const convertBaseCurrencyToEur = (originVal: string, amount: number, rate
   }
   const originRateEuroBased = getRateByKey(originVal, rates);
   return originRateEuroBased ? amount / originRateEuroBased : null;
+};
+
+export const switchLanguage = () => {
+  const currentLang = i18next.language;
+
+  if (currentLang === 'en') {
+    i18next.changeLanguage('he');
+  } else {
+    i18next.changeLanguage('en');
+  }
 };

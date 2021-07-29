@@ -4,7 +4,14 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useTranslation} from 'react-i18next';
 
-import {getSymbolByKey, convertBaseCurrencyToEur, isNumber, getDeclarativeNameByKey, getDestRateByKey} from '../../../shared/utils/utils';
+import {
+  getSymbolByKey,
+  convertBaseCurrencyToEur,
+  isNumber,
+  getDeclarativeNameByKey,
+  getDestRateByKey,
+  switchLanguage,
+} from '../../../shared/utils/utils';
 import {getExchangeRate} from '../../../shared/utils/api';
 import {COIN_SYMBOLS, FLAGS} from '../../../constants/contants';
 import {styles} from '../styles/styles';
@@ -25,6 +32,11 @@ const Label = styled(Typography)`
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 8px;
+`;
+
+const Title = styled(Typography)`
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const StyledErrorText = styled(Typography)`
@@ -51,6 +63,7 @@ const Button = styled.TouchableOpacity`
   border-radius: 4px;
   background-color: ${(props) => (props.disabled ? '#ccc' : ({theme: {palette}}) => palette.primary)};
   align-items: center;
+  justify-content: center;
   height: 40px;
   margin: 8px;
 `;
@@ -81,17 +94,17 @@ const HomeScreen = () => {
   const [convertedValue, setConvertedValue] = useState<number | null>(null);
   const [error, setError] = useState(false);
   const [inputText, setInputText] = useState(COIN_SYMBOLS.ils);
-  const [items, setItems] = useState([
-    {label: 'ILS - Israeli Shekel', value: 'ils', icon: () => <Typography>{FLAGS.ils}</Typography>},
-    {label: 'USD - US Dollar', value: 'usd', icon: () => <Typography>{FLAGS.usd}</Typography>},
-    {label: 'EURO - Euro', value: 'eur', icon: () => <Typography>{FLAGS.eur}</Typography>},
-    {label: 'GBP - British Pound', value: 'gbp', icon: () => <Typography>{FLAGS.gbp}</Typography>},
-    {label: 'INR - Indian Rupee', value: 'inr', icon: () => <Typography>{FLAGS.inr}</Typography>},
-    {label: 'AUD - Australian Dollar', value: 'aud', icon: () => <Typography>{FLAGS.aud}</Typography>},
-    {label: 'THB - Thai Baht', value: 'thb', icon: () => <Typography>{FLAGS.thb}</Typography>},
-    {label: 'ARS - Argentine Peso', value: 'ars', icon: () => <Typography>{FLAGS.ars}</Typography>},
-  ]);
   const {t} = useTranslation('homeScreen');
+  const [items, setItems] = useState([
+    {label: t('ilsDeclarative'), value: 'ils', icon: () => <Typography>{FLAGS.ils}</Typography>},
+    {label: t('usdDeclarative'), value: 'usd', icon: () => <Typography>{FLAGS.usd}</Typography>},
+    {label: t('eurDeclarative'), value: 'eur', icon: () => <Typography>{FLAGS.eur}</Typography>},
+    {label: t('gbpDeclarative'), value: 'gbp', icon: () => <Typography>{FLAGS.gbp}</Typography>},
+    {label: t('inrDeclarative'), value: 'inr', icon: () => <Typography>{FLAGS.inr}</Typography>},
+    {label: t('audDeclarative'), value: 'aud', icon: () => <Typography>{FLAGS.aud}</Typography>},
+    {label: t('thbDeclarative'), value: 'thb', icon: () => <Typography>{FLAGS.thb}</Typography>},
+    {label: t('arsDeclarative'), value: 'ars', icon: () => <Typography>{FLAGS.ars}</Typography>},
+  ]);
 
   const onConvertClicked = useCallback(async () => {
     try {
@@ -109,6 +122,19 @@ const HomeScreen = () => {
       setError(true);
     }
   }, [originValue, destValue, inputText]);
+
+  useEffect(() => {
+    setItems([
+      {label: t('ilsDeclarative'), value: 'ils', icon: () => <Typography>{FLAGS.ils}</Typography>},
+      {label: t('usdDeclarative'), value: 'usd', icon: () => <Typography>{FLAGS.usd}</Typography>},
+      {label: t('eurDeclarative'), value: 'eur', icon: () => <Typography>{FLAGS.eur}</Typography>},
+      {label: t('gbpDeclarative'), value: 'gbp', icon: () => <Typography>{FLAGS.gbp}</Typography>},
+      {label: t('inrDeclarative'), value: 'inr', icon: () => <Typography>{FLAGS.inr}</Typography>},
+      {label: t('audDeclarative'), value: 'aud', icon: () => <Typography>{FLAGS.aud}</Typography>},
+      {label: t('thbDeclarative'), value: 'thb', icon: () => <Typography>{FLAGS.thb}</Typography>},
+      {label: t('arsDeclarative'), value: 'ars', icon: () => <Typography>{FLAGS.ars}</Typography>},
+    ]);
+  }, [t]);
 
   const onInputChange = useCallback(
     (text: string) => {
@@ -161,6 +187,10 @@ const HomeScreen = () => {
 
   return (
     <ScreenContainer>
+      <Title>{t('title')}</Title>
+      <Button onPress={switchLanguage}>
+        <Typography>{t('switchLanguage')}</Typography>
+      </Button>
       <Label>{t('amount')}</Label>
       <Input onChangeText={onInputChange} value={inputText} />
       {errorMessage && <StyledErrorText>{t('invalidAmount')}</StyledErrorText>}

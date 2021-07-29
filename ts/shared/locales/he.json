@@ -5,6 +5,16 @@
     "to": "יעד",
     "convert": "המר",
     "invalidAmount": "כמות שגויה",
-    "unableConvertCurrency": "לא ניתן לבצע המרה."
+    "unableConvertCurrency": "לא ניתן לבצע המרה.",
+    "switchLanguage": "שנה שפה",
+    "ilsDeclarative": "שקל ישראלי",
+    "usdDeclarative": "דולר אמריקאי",
+    "eurDeclarative": "יורו",
+    "gbpDeclarative": "פאונד בריטי",
+    "inrDeclarative": "רופי הודי",
+    "audDeclarative": "דולר אוסטרלי",
+    "thbDeclarative": "באט תאילנדי",
+    "arsDeclarative": "פסו ארגנטינאי",
+    "title": "המרת מטבע"
   }
 }

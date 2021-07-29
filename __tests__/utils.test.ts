@@ -1,5 +1,6 @@
 import {getSymbolByKey, getDeclarativeNameByKey, isNumber, getDestRateByKey, getRateByKey, convertBaseCurrencyToEur} from '../ts/shared/utils/utils';
-import {COIN_SYMBOLS, DECLARATIVE_CURRENCY_NAMES} from '../ts/constants/contants';
+import {COIN_SYMBOLS, DECLARATIVE_CURRENCY_NAMES, DECLARATIVE_CURRENCY_NAMES_HE} from '../ts/constants/contants';
+import i18next from 'i18next';
 
 //mock rates data
 const rates = {
@@ -20,7 +21,7 @@ describe('Testing Utils Functions', () => {
     expect(getSymbolByKey('ilsss')).toBe('');
   });
   test('getDeclarativeNameByKey - should return the correct declarative name', () => {
-    expect(getDeclarativeNameByKey('ils')).toBe(DECLARATIVE_CURRENCY_NAMES.ils);
+    expect(getDeclarativeNameByKey('ils')).toBe(i18next.language === 'en' ? DECLARATIVE_CURRENCY_NAMES.ils : DECLARATIVE_CURRENCY_NAMES_HE.ils);
   });
   test('getDeclarativeNameByKey - given an invalidKey should return undefined declarative name', () => {
     expect(getDeclarativeNameByKey('ilsss')).toBe(undefined);

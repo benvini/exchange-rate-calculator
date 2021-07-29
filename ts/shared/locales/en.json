@@ -5,6 +5,16 @@
     "to": "To",
     "convert": "CONVERT",
     "invalidAmount": "Invalid amount.",
-    "unableConvertCurrency": "Unable Convert Currency."
+    "unableConvertCurrency": "Unable Convert Currency.",
+    "switchLanguage": "Switch Language",
+    "ilsDeclarative": "ILS - Israeli Shekel",
+    "usdDeclarative": "USD - US Dollar",
+    "eurDeclarative": "EURO - Euro'",
+    "gbpDeclarative": "GBP - British Pound",
+    "inrDeclarative": "INR - Indian Rupee",
+    "audDeclarative": "AUD - Australian Dollar",
+    "thbDeclarative": "THB - Thai Baht",
+    "arsDeclarative": "ARS - Argentine Peso",
+    "title": "Currency Converter"
   }
 }

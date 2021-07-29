@@ -32,3 +32,14 @@ export const DECLARATIVE_CURRENCY_NAMES = {
   ars: 'Argentine Pesos',
   eur: 'Euros',
 };
+
+export const DECLARATIVE_CURRENCY_NAMES_HE = {
+  ils: 'שקלים ישראלים',
+  usd: 'דולרים אמריקאים',
+  aud: 'דולרים אוסטרלים',
+  thb: 'בט תאילנדי',
+  inr: 'רופי הודי',
+  gbp: 'פאונד בריטי',
+  ars: 'פסו ארגנטינאי',
+  eur: 'יורו',
+};
