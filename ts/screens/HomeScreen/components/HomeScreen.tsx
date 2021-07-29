@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useTranslation} from 'react-i18next';
 
-import {getSymbolByText, getRateByKey, isNumber, getDeclarativeNameByKey, getDestRateByKey} from '../../../shared/utils/utils';
+import {getSymbolByKey, getRateByKey, isNumber, getDeclarativeNameByKey, getDestRateByKey} from '../../../shared/utils/utils';
 import {getExchangeRate} from '../../../shared/utils/api';
 import {COIN_SYMBOLS, FLAGS} from '../../../constants/contants';
 import {styles} from '../styles/styles';
@@ -120,7 +120,7 @@ const HomeScreen = () => {
 
   const onInputChange = useCallback(
     (text: string) => {
-      const inputWithSymbol = `${getSymbolByText(originValue)} ${text.slice(1).trim()}`;
+      const inputWithSymbol = `${getSymbolByKey(originValue)} ${text.slice(1).trim()}`;
       setInputText(inputWithSymbol);
       setConvertedValue(null);
       const userInputAmount = inputWithSymbol.slice(2);
@@ -134,7 +134,7 @@ const HomeScreen = () => {
   );
 
   useEffect(() => {
-    setInputText(`${getSymbolByText(originValue)} ${inputText.slice(1).trim()}`);
+    setInputText(`${getSymbolByKey(originValue)} ${inputText.slice(1).trim()}`);
   }, [originValue, inputText]);
 
   const onOriginClicked = useCallback(() => {

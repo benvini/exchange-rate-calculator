@@ -30,7 +30,7 @@ const opacityTransition: object = {
 
 const ExchangeRateStackNavigator = createStackNavigator();
 
-const TestNavigator = () => {
+const ExchangeRateNavigator = () => {
   const {home} = ROUTES;
   return (
     <ExchangeRateStackNavigator.Navigator screenOptions={{...defaultNavOptions, ...opacityTransition}}>
@@ -39,4 +39,4 @@ const TestNavigator = () => {
   );
 };
 
-export default TestNavigator;
+export default ExchangeRateNavigator;

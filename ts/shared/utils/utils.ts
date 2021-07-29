@@ -1,9 +1,9 @@
 import {Rates} from '../../types/types';
 import {COIN_SYMBOLS, DECLARATIVE_CURRENCY_NAMES} from '../../constants/contants';
 
-export const getSymbolByText = (text: string) => {
+export const getSymbolByKey = (key: string) => {
   let fetchedSymbol = '';
-  switch (text) {
+  switch (key) {
     case 'ars':
       fetchedSymbol = COIN_SYMBOLS.ars;
       break;
